@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+if [ "$NEKOPATH" = "" ]; then
+  # this is where libneko dynlibs are placed
+  export NEKOPATH=$ASDF_INSTALL_PATH/bin
+fi
