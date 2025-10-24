@@ -29,11 +29,17 @@ jobs:
           command: neko -version
 
   test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Install bats
+        run: brew install bats-core
 
       - name: Install asdf
         run: git clone https://github.com/asdf-vm/asdf.git $HOME/asdf
@@ -53,15 +59,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Install shellcheck
+        run: brew install shellcheck
+
       - name: Run ShellCheck
         run: shellcheck bin/*
 
   format:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
 
       - name: Install shfmt
         run: brew install shfmt
